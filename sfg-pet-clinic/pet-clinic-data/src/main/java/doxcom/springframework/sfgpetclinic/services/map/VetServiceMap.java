@@ -1,11 +1,12 @@
-package services.map;
+package doxcom.springframework.sfgpetclinic.services.map;
 
 import doxcom.springframework.sfgpetclinic.model.Vet;
-import services.CrudService;
-import services.VetService;
+import doxcom.springframework.sfgpetclinic.services.VetService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
+@Service
 public class VetServiceMap extends AbstractMapService<Vet, Long> implements VetService {
 
 

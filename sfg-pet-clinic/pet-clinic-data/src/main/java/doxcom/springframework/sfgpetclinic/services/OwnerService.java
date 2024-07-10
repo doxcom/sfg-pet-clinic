@@ -1,8 +1,6 @@
-package services;
+package doxcom.springframework.sfgpetclinic.services;
 
 import doxcom.springframework.sfgpetclinic.model.Owner;
-
-import java.util.Set;
 
 public interface OwnerService extends CrudService<Owner, Long> {
 

@@ -1,4 +1,4 @@
-package services.map;
+package doxcom.springframework.sfgpetclinic.services.map;
 
 
 import java.util.HashMap;

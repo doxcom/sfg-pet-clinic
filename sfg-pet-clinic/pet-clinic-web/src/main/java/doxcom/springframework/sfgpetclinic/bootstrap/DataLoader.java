@@ -5,21 +5,17 @@ import doxcom.springframework.sfgpetclinic.model.Owner;
 import doxcom.springframework.sfgpetclinic.model.Vet;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
-import services.OwnerService;
-import services.PetService;
-import services.VetService;
-import services.map.OwnerServiceMap;
-import services.map.VetServiceMap;
+import doxcom.springframework.sfgpetclinic.services.OwnerService;
+import doxcom.springframework.sfgpetclinic.services.VetService;
 
 @Component
 public class DataLoader implements CommandLineRunner {
-    private  final OwnerService ownerService;
-    private  final VetService vetService;
+    private final OwnerService ownerService;
+    private final VetService vetService;
 
-    public DataLoader() {
-        ownerService = new OwnerServiceMap();
-        vetService = new VetServiceMap();
-
+    public DataLoader(OwnerService ownerService, VetService vetService) {
+        this.ownerService = ownerService;
+        this.vetService = vetService;
     }
 
 

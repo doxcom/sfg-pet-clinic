@@ -1,11 +1,12 @@
-package services.map;
+package doxcom.springframework.sfgpetclinic.services.map;
 
 import doxcom.springframework.sfgpetclinic.model.Pet;
-import services.CrudService;
-import services.PetService;
+import doxcom.springframework.sfgpetclinic.services.PetService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
+@Service
 public class PetServiceMap extends AbstractMapService<Pet,Long> implements PetService {
     @Override
     public Set<Pet> findAll() {
