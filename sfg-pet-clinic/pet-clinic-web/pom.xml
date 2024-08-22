@@ -29,13 +29,6 @@
 
     <dependencies>
         <dependency>
-            <groupId>doxcom.springframework</groupId>
-            <artifactId>pet-clinic-data</artifactId>
-            <version>0.0.3-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-
-        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
@@ -49,12 +42,7 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <scope>runtime</scope>
-            <optional>true</optional>
-        </dependency>
+
 
         <!-- Webjars -->
         <dependency>
@@ -70,38 +58,110 @@
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
+            <artifactId>spring-boot-devtools</artifactId>
             <scope>test</scope>
         </dependency>
 
-
-
+        <dependency>
+            <groupId>jakarta.xml.bind</groupId>
+            <artifactId>jakarta.xml.bind-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
-<!--
     <build>
         <plugins>
             <plugin>
-                <groupId>com.gitlab.haynes</groupId>
-                <artifactId>libsass-maven-plugin</artifactId>
-                <version>0.3.1</version>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
                 <executions>
                     <execution>
-                        <phase>generate-resources</phase>
+                        <id>enforce-java</id>
                         <goals>
-                            <goal>compile</goal>
+                            <goal>enforce</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <requireJavaVersion>
+                                    <message>This build requires at least Java ${java.version}, update your JVM, and
+                                        run the build again</message>
+                                    <version>${java.version}</version>
+                                </requireJavaVersion>
+                            </rules>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+
+            <plugin>
+                <groupId>org.graalvm.buildtools</groupId>
+                <artifactId>native-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <!-- Spring Boot Actuator displays build-related information
+                          if a META-INF/build-info.properties file is present -->
+                        <goals>
+                            <goal>build-info</goal>
+                        </goals>
+                        <configuration>
+                            <additionalProperties>
+                                <encoding.source>${project.build.sourceEncoding}</encoding.source>
+                                <encoding.reporting>${project.reporting.outputEncoding}</encoding.reporting>
+                                <java.source>${java.version}</java.source>
+                                <java.target>${java.version}</java.target>
+                            </additionalProperties>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>${jacoco.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>report</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>report</goal>
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+
+            <!-- Spring Boot Actuator displays build-related information if a git.properties file is
+            present at the classpath -->
+            <plugin>
+                <groupId>io.github.git-commit-id</groupId>
+                <artifactId>git-commit-id-maven-plugin</artifactId>
                 <configuration>
-                    <inputPath>${basedir}/src/main/scss/</inputPath>
-                    <outputPath>${basedir}/src/main/resources/static/resources/css/</outputPath>
-                    <includePath>
-                        ${project.build.directory}/webjars/META-INF/resources/webjars/bootstrap/${webjars-bootstrap.version}/scss/</includePath>
+                    <failOnNoGitDirectory>false</failOnNoGitDirectory>
+                    <failOnUnableToExtractRepoInfo>false</failOnUnableToExtractRepoInfo>
                 </configuration>
             </plugin>
+            <!-- Spring Boot Actuator displays sbom-related information if a CycloneDX SBOM file is
+            present at the classpath -->
+            <plugin>
+                <groupId>org.cyclonedx</groupId>
+                <artifactId>cyclonedx-maven-plugin</artifactId>
+            </plugin>
+
         </plugins>
     </build>
--->
+
 
 
 
@@ -158,6 +218,7 @@
                 </plugins>
             </build>
         </profile>
+
         <profile>
             <id>m2e</id>
             <activation>
@@ -203,19 +264,7 @@
                                                 <ignore />
                                             </action>
                                         </pluginExecution>
-                                        <pluginExecution>
-                                            <pluginExecutionFilter>
-                                                <groupId>io.spring.javaformat</groupId>
-                                                <artifactId>spring-javaformat-maven-plugin</artifactId>
-                                                <versionRange>[0,)</versionRange>
-                                                <goals>
-                                                    <goal>validate</goal>
-                                                </goals>
-                                            </pluginExecutionFilter>
-                                            <action>
-                                                <ignore />
-                                            </action>
-                                        </pluginExecution>
+
                                     </pluginExecutions>
                                 </lifecycleMappingMetadata>
                             </configuration>
@@ -224,6 +273,7 @@
                 </pluginManagement>
             </build>
         </profile>
+
     </profiles>
 
 
