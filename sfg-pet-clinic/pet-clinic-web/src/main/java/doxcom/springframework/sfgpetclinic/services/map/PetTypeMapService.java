@@ -3,10 +3,12 @@ package doxcom.springframework.sfgpetclinic.services.map;
 
 import doxcom.springframework.sfgpetclinic.model.PetType;
 import doxcom.springframework.sfgpetclinic.services.PetTypeService;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
 @Service  //spring will wired up this service
+@Profile({"default","map"})
 public class PetTypeMapService extends AbstractMapService<PetType, Long> implements PetTypeService {
 
     @Override

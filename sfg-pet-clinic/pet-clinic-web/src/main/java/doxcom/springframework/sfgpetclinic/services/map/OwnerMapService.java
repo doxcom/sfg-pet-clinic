@@ -10,7 +10,7 @@ import doxcom.springframework.sfgpetclinic.services.OwnerService;
 
 import java.util.Set;
 @Service
-@Profile({"default", "map"})
+@Profile({"default","map"})
 public class OwnerMapService extends AbstractMapService<Owner, Long> implements OwnerService {
     //Owners of the Pets
 
