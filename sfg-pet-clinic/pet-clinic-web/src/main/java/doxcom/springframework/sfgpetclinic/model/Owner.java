@@ -1,14 +1,29 @@
 package doxcom.springframework.sfgpetclinic.model;
 
 import jakarta.persistence.*;
+import lombok.*;
 
 import java.util.HashSet;
 import java.util.Set;
 
+
+@Getter
+@Setter
+@NoArgsConstructor
+//@AllArgsConstructor
+//@Builder
 @Entity
 @Table(name = "owners")
 public class Owner extends Person {
 
+    @Builder //the build will generate all these values, first 3 properties come from Person Class
+    public Owner( Long id, String firstName,  String lastName, Set<Pet> pets, String telephone, String city, String address) {
+        super(id,firstName,lastName);
+        this.pets = pets;
+        this.telephone = telephone;
+        this.city = city;
+        this.address = address;
+    }
 
     @Column(name = "address")
     private String address;
@@ -22,35 +37,5 @@ public class Owner extends Person {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner") //if a delete an owner the pet also will be deleted
     private Set<Pet> pets = new HashSet<>();
 
-    public String getCity() {
-        return city;
-    }
 
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getTelephone() {
-        return telephone;
-    }
-
-    public void setTelephone(String telephone) {
-        this.telephone = telephone;
-    }
-
-    public Set<Pet> getPets() {
-        return pets;
-    }
-
-    public void setPets(Set<Pet> pets) {
-        this.pets = pets;
-    }
 }
