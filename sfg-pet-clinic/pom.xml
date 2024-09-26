@@ -90,6 +90,18 @@
             <artifactId>junit-jupiter-api</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-junit-jupiter</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>5.2.2.RELEASE</version>
+            <scope>test</scope>
+        </dependency>
 
 
 
@@ -127,6 +139,9 @@
             <version>${webjars-bootstrap.version}</version>
         </dependency>
         <dependency>
+
+
+
             <groupId>org.webjars.npm</groupId>
             <artifactId>font-awesome</artifactId>
             <version>${webjars-font-awesome.version}</version>
@@ -137,9 +152,12 @@
             <artifactId>spring-boot-devtools</artifactId>
             <scope>test</scope>
         </dependency>
+
+
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-testcontainers</artifactId>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>2.5</version>
             <scope>test</scope>
         </dependency>
         <dependency>
