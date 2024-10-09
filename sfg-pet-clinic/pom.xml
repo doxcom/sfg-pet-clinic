@@ -122,6 +122,8 @@
             <scope>runtime</scope>
         </dependency>
 
+
+
         <!-- Caching -->
         <dependency>
             <groupId>javax.cache</groupId>
@@ -139,9 +141,12 @@
             <version>${webjars-bootstrap.version}</version>
         </dependency>
         <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>jquery</artifactId>
+            <version>3.7.1</version>
+        </dependency>
 
-
-
+        <dependency>
             <groupId>org.webjars.npm</groupId>
             <artifactId>font-awesome</artifactId>
             <version>${webjars-font-awesome.version}</version>
@@ -175,6 +180,10 @@
             <artifactId>mysql</artifactId>
             <scope>test</scope>
         </dependency>
+
+
+
+
 
         <dependency>
             <groupId>jakarta.xml.bind</groupId>
