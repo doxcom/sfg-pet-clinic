@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 import doxcom.springframework.sfgpetclinic.services.OwnerService;
 
+import java.util.List;
 import java.util.Set;
 @Service
 @Profile({"default","map"})
@@ -78,5 +79,12 @@ public class OwnerMapService extends AbstractMapService<Owner, Long> implements 
                 .orElse(null);
 
 
+    }
+
+    @Override
+    public List<Owner> findAllByLastNameLike(String lastName) {
+
+        //todo - impl
+        return null;
     }
 }
