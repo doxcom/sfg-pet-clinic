@@ -22,6 +22,7 @@ public class BaseEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY) //auto increment field
     private Long id;
 
-  //  public BaseEntity(Long id) {
-   // }
+  public boolean isNew(){
+      return this.id == null;
+  }
 }

@@ -4,6 +4,7 @@ import doxcom.springframework.sfgpetclinic.model.Owner;
 import doxcom.springframework.sfgpetclinic.services.OwnerService;
 import jakarta.validation.Valid;
 
+
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
@@ -55,8 +56,8 @@ public class OwnerController {
         }
 
         // find owners by last name
-        List<Owner> results = ownerService.findAllByLastNameLike(owner.getLastName());
 
+        List<Owner> results = ownerService.findAllByLastNameLike("%"+owner.getLastName()+"%");
         if (results.isEmpty()) {
             System.out.println("Owner fail finder");
 
@@ -94,10 +95,26 @@ public class OwnerController {
 
 
     @GetMapping("/{ownerId}")
-    public ModelAndView showOwner(@PathVariable("ownerId") Long ownerId){
+    public ModelAndView showOwner(@PathVariable Long ownerId){
         ModelAndView mav = new ModelAndView("owners/ownerDetails");
         mav.addObject(ownerService.findById(ownerId));
 
         return mav;
+    }
+
+    @GetMapping("/new")
+    public String initCreationForm(Model model){
+        model.addAttribute("owner",Owner.builder().build());
+        return VIEWS_OWNER_CREATE_OR_UPDATE_FORM;
+    }
+
+    @PostMapping("/new")
+    public String processCreationForm(@Valid Owner owner, BindingResult result){
+        if(result.hasErrors()){
+            return VIEWS_OWNER_CREATE_OR_UPDATE_FORM;
+        }else{
+            Owner savedOwner = ownerService.save(owner);
+            return "redirect:/owners/" + savedOwner.getId();
+        }
     }
 }
