@@ -10,16 +10,13 @@ import java.util.Set;
 @Getter
 @Setter
 @NoArgsConstructor
-//@AllArgsConstructor
-//@Builder
 @Entity
 @Table(name = "owners")
 public class Owner extends Person {
 
     @Builder //the build will generate all these values, first 3 properties come from Person Class
-    public Owner( Long id, String firstName,  String lastName, String telephone, String city, String address,Set<Pet> pets) {
+    public Owner( Long id, String firstName,  String lastName, String telephone, String city, String address, Set<Pet> pets) {
         super(id,firstName,lastName);
-        this.pets = pets;
         this.telephone = telephone;
         this.city = city;
         this.address = address;
